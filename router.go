@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/transport/http"
+	"github.com/gorilla/mux"
 )
 
 type Router struct {
