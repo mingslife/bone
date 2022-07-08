@@ -11,11 +11,15 @@ import (
 	"github.com/facebookgo/inject"
 )
 
+// ApplicationOptions represents the options to create Bone Application
+// instance.
 type ApplicationOptions struct {
 	Host string
 	Port int
 }
 
+// DefaultApplicationOptions returns the default options to create Bone
+// Application instance.
 func DefaultApplicationOptions() *ApplicationOptions {
 	return &ApplicationOptions{
 		Host: "127.0.0.1",
@@ -23,12 +27,14 @@ func DefaultApplicationOptions() *ApplicationOptions {
 	}
 }
 
+// Application defines the struct of Bone Application.
 type Application struct {
 	o *ApplicationOptions
 	g *inject.Graph
 	r *Router
 }
 
+// NewApplication returns the instance of Bone Application.
 func NewApplication(options *ApplicationOptions) *Application {
 	app := &Application{
 		o: options,
@@ -53,6 +59,8 @@ func (*Application) unregister(component Component) {
 	component.Unregister()
 }
 
+// Use injects the components to the Bone Application, combines other
+// component into a interconnected system.
 func (app *Application) Use(components ...Component) {
 	for _, component := range components {
 		err := component.Init()
@@ -85,6 +93,7 @@ func (app *Application) Use(components ...Component) {
 	}()
 }
 
+// Run starts up the Bone Application.
 func (app *Application) Run() {
 	addr := fmt.Sprintf("%s:%d", app.o.Host, app.o.Port)
 	s := &http.Server{

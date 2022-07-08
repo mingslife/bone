@@ -1,16 +1,23 @@
 package bone
 
 import (
-	"context"
-	"encoding/json"
-	"net/http"
+	"github.com/go-kit/kit/transport/http"
 )
 
-var Http = new(httputil)
-
-type httputil struct{}
-
-func (*httputil) EncodeJSON(ctx context.Context, w http.ResponseWriter, rsp interface{}) error {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	return json.NewEncoder(w).Encode(rsp)
-}
+var (
+	// NewServer is shortcut of go-kit's http.NewServer.
+	// NewServer constructs a new server, which implements http.Handler and wraps
+	// the provided endpoint.
+	NewServer = http.NewServer
+	// EncodeJSONResquest is shortcut of go-kit's http.EncodeJSONRequest.
+	// EncodeJSONRequest is an EncodeRequestFunc that serializes the request as a
+	// JSON object to the Request body. Many JSON-over-HTTP services can use it as
+	// a sensible default. If the request implements Headerer, the provided headers
+	// will be applied to the request.
+	EncodeJSONRequest = http.EncodeJSONRequest
+	// EncodeXMLRequest is shortcut of go-kit's http.EncodeXMLRequest.
+	// EncodeXMLRequest is an EncodeRequestFunc that serializes the request as a
+	// XML object to the Request body. If the request implements Headerer,
+	// the provided headers will be applied to the request.
+	EncodeXMLRequest = http.EncodeXMLRequest
+)
