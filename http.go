@@ -20,4 +20,11 @@ var (
 	// XML object to the Request body. If the request implements Headerer,
 	// the provided headers will be applied to the request.
 	EncodeXMLRequest = http.EncodeXMLRequest
+	// EncodeJSONResponse is shortcut of go-kit's http.EncodeJSONResponse.
+	// EncodeJSONResponse is a EncodeResponseFunc that serializes the response as a
+	// JSON object to the ResponseWriter. Many JSON-over-HTTP services can use it as
+	// a sensible default. If the response implements Headerer, the provided headers
+	// will be applied to the response. If the response implements StatusCoder, the
+	// provided StatusCode will be used instead of 200.
+	EncodeJSONResponse = http.EncodeJSONResponse
 )
