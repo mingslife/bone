@@ -16,6 +16,21 @@ $ go get -u github.com/mingslife/bone
 
 [Go Packages](https://pkg.go.dev/github.com/mingslife/bone?tab=doc)
 
+## Quick start
+
+```go
+package main
+
+import "github.com/mingslife/bone"
+
+func main() {
+	options := bone.DefaultApplicationOptions()
+	application := bone.NewApplication(options)
+  // application.Use(...components)
+  application.Run() // Listen on 127.0.0.1:8080
+}
+```
+
 ## Example
 
 [bone-example](https://github.com/mingslife/bone-example)
