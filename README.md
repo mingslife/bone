@@ -26,8 +26,8 @@ import "github.com/mingslife/bone"
 func main() {
 	options := bone.DefaultApplicationOptions()
 	application := bone.NewApplication(options)
-  // application.Use(...components)
-  application.Run() // Listen on 127.0.0.1:8080
+	// application.Use(...components)
+	application.Run() // Listen on 127.0.0.1:8080
 }
 ```
 
