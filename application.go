@@ -67,16 +67,16 @@ func NewApplication(options *ApplicationOptions) *Application {
 		log.Println("WARNING: Running in debug mode.")
 	}
 
-	// Inject core components
-	app.Inject(&inject.Object{Name: "application.router", Value: app.httpRouter})
-	app.Inject(&inject.Object{Name: "application.grpc", Value: app.grpcServer})
+	// Provide core components
+	app.Provide(&inject.Object{Name: "application.router", Value: app.httpRouter})
+	app.Provide(&inject.Object{Name: "application.grpc", Value: app.grpcServer})
 
 	return app
 }
 
-// Inject is a low-level API to inject *inject.Object to bone Application.
-// Do NOT use it except must to.
-func (app *Application) Inject(obj *inject.Object) error {
+// Provide is a low-level API to provide *inject.Object to inject Bone
+// Application. Do NOT use it except must to.
+func (app *Application) Provide(obj *inject.Object) error {
 	return app.g.Provide(obj)
 }
 
